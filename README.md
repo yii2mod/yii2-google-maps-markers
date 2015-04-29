@@ -1,4 +1,4 @@
-Google Maps Markers API library for Yii2
+Google Maps Markers Widget for Yii2
 =========
 
 Installation   
