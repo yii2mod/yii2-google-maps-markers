@@ -46,6 +46,42 @@ To use GoogleMaps, you need to configure its [[userLocations]] property. For exa
   ]); 
 ```
 
+Configuration
+----------------------------------------
+
+To configure the Google Maps key or other options like language, version, library, or map options:
+```php
+ echo GoogleMaps::widget([
+      'userLocations' => [......],
+      'googleMapsUrlOptions' => [
+          'key' => 'this_is_my_key',
+          'language' => 'id',
+          'version' => '3.1.18'
+      ],
+      'googleMapsOptions' => [
+          'mapTypeId' => 'roadmap',
+          'tilt' => 45,
+          'zoom' => 5
+      ]
+  ]); 
+```
+OR via yii params configuration. For example:
+```php
+'params' => [
+    'googleMapsUrlOptions' => [
+          'key' => 'this_is_my_key',
+          'language' => 'id',
+          'version' => '3.1.18'
+     ],
+    'googleMapsOptions' => [
+          'mapTypeId' => 'roadmap',
+          'tilt' => 45,
+          'zoom' => 5
+     ]  
+],
+```
+To get key, please visit [options page](https://code.google.com/apis/console/)
+
 Google Maps Options 
 ----------------
 You can find them on the [options page](https://developers.google.com/maps/documentation/javascript/reference)
