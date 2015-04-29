@@ -1,5 +1,6 @@
 Google Maps Markers Widget for Yii2
 ==========
+- GoogleMaps Widget displays a set of user addresses as markers on the map.
 
 Installation   
 ------------
@@ -22,7 +23,7 @@ to the require section of your composer.json.
 
 Usage
 ------------
-Once the extension is installed, simply add widget to your page as follows:
+To use GoogleMaps, you need to configure its [[userLocations]] property. For example:
 
 ```php
   echo GoogleMaps::widget([
