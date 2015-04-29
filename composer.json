@@ -1,0 +1,18 @@
+{
+    "name": "yii2mod/yii2-google-maps-markers",
+    "description": "Google Maps Markers displays a set of user addresses as markers on the map.",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "extension"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Igor Chepurnoy",
+            "email": "igorzfort@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "yii2mod\\google\\maps\\markers\\": ""
+        }
+    }
+}
