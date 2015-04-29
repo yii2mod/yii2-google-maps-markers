@@ -1,5 +1,5 @@
 Google Maps Markers Widget for Yii2
-=========
+==========
 
 Installation   
 ------------
