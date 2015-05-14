@@ -76,7 +76,7 @@ OR via yii params configuration. For example:
     'googleMapsOptions' => [
           'mapTypeId' => 'roadmap',
           'tilt' => 45,
-          'zoom' => 5
+          'zoom' => 10
      ]  
 ],
 ```
