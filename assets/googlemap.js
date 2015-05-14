@@ -3,26 +3,22 @@
  * Address priority - House Number, Street Direction, Street Name, Street Suffix, City, State, Zip, Country
  */
 yii.googleMapManager = (function ($) {
-    var map;
     var pub = {
-        isActive: false,
         nextAddress: 0,
+        zeroResult: 0,
         delay: 100,
-        bounds: new google.maps.LatLngBounds(),
-        geocoder: new google.maps.Geocoder(),
-        infoWindow: new google.maps.InfoWindow({
-            content: '',
-            maxWidth: 250
-        }),
-        options: [],
+        bounds: [],
+        geocoder: [],
+        infoWindow: [],
         containerId: 'map_canvas',
         geocodeData: [],
         mapOptions: [],
         listeners: [],
         renderEmptyMap: true,
+        map: null,
         // Init function
-        init: function () {
-            initOptions();
+        initModule: function (options) {
+            initOptions(options);
             google.maps.event.addDomListener(window, 'load', pub.initializeMap());
             loadMap();
             registerListeners();
@@ -33,10 +29,10 @@ yii.googleMapManager = (function ($) {
             container.style.width = '100%';
             container.style.height = '100%';
             // Set default center if renderEmptyMap property set to true, and empty geocodeData
-            if (pub.renderEmptyMap && pub.geocodeData.length === pub.nextAddress) {
+            if (pub.renderEmptyMap && pub.geocodeData.length == false) {
                 pub.mapOptions.center = new google.maps.LatLng(28.562635, 16.1397892);
             }
-            map = new google.maps.Map(container, pub.mapOptions);
+            pub.map = new google.maps.Map(container, pub.mapOptions);
         },
 
         /**
@@ -49,30 +45,46 @@ yii.googleMapManager = (function ($) {
                     var position = place.geometry.location;
                     pub.bounds.extend(position);
                     var marker = new google.maps.Marker({
-                        map: map,
+                        map: pub.map,
                         position: position
                     });
-                    bindInfoWindow(marker, map, pub.infoWindow, htmlContent);
-                    map.fitBounds(pub.bounds);
+                    bindInfoWindow(marker, pub.map, pub.infoWindow, htmlContent);
+                    pub.map.fitBounds(pub.bounds);
                 }
                 else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
                     pub.nextAddress--;
                     pub.delay++;
                 }
+                else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                    pub.zeroResult++;
+                }
                 loadMap();
             });
+            // If for all search address status is ZERO_RESULTS, then render empty map
+            if ((pub.geocodeData.length - 1) == pub.zeroResult) {
+                pub.map.setCenter(new google.maps.LatLng(28.562635, 16.1397892));
+            }
         }
     };
 
     /**
      * Setup googleMapManager properties
      */
-    function initOptions() {
-        for (var property in pub.options) {
+    function initOptions(options) {
+        for (var property in options) {
             if (pub.hasOwnProperty(property)) {
-                pub[property] = pub.options[property];
+                pub[property] = options[property];
             }
         }
+        pub.bounds = new google.maps.LatLngBounds();
+        pub.geocoder = new google.maps.Geocoder();
+        pub.infoWindow = new google.maps.InfoWindow({
+            content: '',
+            maxWidth: 250
+        });
+        pub.map = null;
+        pub.nextAddress = 0;
+        pub.zeroResult = 0;
     }
 
     /**
