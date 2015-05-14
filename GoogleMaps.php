@@ -144,6 +144,7 @@ class GoogleMaps extends Widget
         echo Html::tag('div', '', ['id' => $this->containerId]);
         echo Html::endTag('div');
         $this->registerAssets();
+        parent::run();
     }
 
     /**
@@ -154,8 +155,8 @@ class GoogleMaps extends Widget
         $view = $this->getView();
         GoogleMapsAsset::register($view);
         $view->registerJsFile($this->getGoogleMapsApiUrl(), ['position' => View::POS_HEAD]);
-        $this->activatePlugin($view);
-        $view->registerJs($this->getGoogleMapJs(), $view::POS_END, 'google-api-js');
+        $options = $this->getClientOptions();
+        $view->registerJs("yii.googleMapManager.initModule({$options})", $view::POS_END, 'google-api-js');
     }
 
     /**
@@ -218,28 +219,18 @@ class GoogleMaps extends Widget
     }
 
     /**
-     * Get google map js
+     * Get google map client options
      * @return string
      */
-    protected function getGoogleMapJs()
+    protected function getClientOptions()
     {
-        $jsOptions = Json::encode([
+        return Json::encode([
             'geocodeData' => $this->geocodeData,
             'mapOptions' => $this->googleMapsOptions,
             'listeners' => $this->googleMapsListeners,
             'containerId' => $this->containerId,
             'renderEmptyMap' => $this->renderEmptyMap,
         ]);
-        return "yii.googleMapManager.options={$jsOptions}";
-
     }
 
-    /**
-     * Activate plugin
-     * @param $view View
-     */
-    protected function activatePlugin($view)
-    {
-        $view->registerJs('yii.googleMapManager.isActive=true', $view::POS_END, 'activate-google-maps');
-    }
 }
