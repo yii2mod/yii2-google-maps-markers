@@ -16,6 +16,8 @@ yii.googleMapManager = (function ($) {
         listeners: [],
         renderEmptyMap: true,
         map: null,
+        init: function () {
+        },
         // Init function
         initModule: function (options) {
             initOptions(options);
