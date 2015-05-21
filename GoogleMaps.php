@@ -103,6 +103,12 @@ class GoogleMaps extends Widget
     public $googleMapsListeners = [];
 
     /**
+     * https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
+     * @var array
+     */
+    public $infoWindowOptions = [];
+
+    /**
      * @var string google maps container id
      */
     public $containerId = 'map_canvas';
@@ -127,6 +133,7 @@ class GoogleMaps extends Widget
             throw new InvalidConfigException('The "userLocations" property must be of the type array');
         }
         $this->googleMapsOptions = $this->getGoogleMapsOptions();
+        $this->infoWindowOptions = $this->getInfoWindowOptions();
         $this->googleMapsUrlOptions = $this->getGoogleMapsUrlOptions();
     }
 
@@ -219,6 +226,21 @@ class GoogleMaps extends Widget
     }
 
     /**
+     * Get info window options
+     * @return array
+     */
+    protected function getInfoWindowOptions()
+    {
+        if (isset(Yii::$app->params['infoWindowOptions']) && empty($this->infoWindowOptions)) {
+            $this->infoWindowOptions = Yii::$app->params['infoWindowOptions'];
+        }
+        return ArrayHelper::merge([
+            'content' => '',
+            'maxWidth' => 350,
+        ], $this->infoWindowOptions);
+    }
+
+    /**
      * Get google map client options
      * @return string
      */
@@ -230,6 +252,7 @@ class GoogleMaps extends Widget
             'listeners' => $this->googleMapsListeners,
             'containerId' => $this->containerId,
             'renderEmptyMap' => $this->renderEmptyMap,
+            'infoWindowOptions' => $this->infoWindowOptions,
         ]);
     }
 
