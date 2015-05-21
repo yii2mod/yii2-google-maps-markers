@@ -10,6 +10,7 @@ yii.googleMapManager = (function ($) {
         bounds: [],
         geocoder: [],
         infoWindow: [],
+        infoWindowOptions: [],
         containerId: 'map_canvas',
         geocodeData: [],
         mapOptions: [],
@@ -80,10 +81,7 @@ yii.googleMapManager = (function ($) {
         }
         pub.bounds = new google.maps.LatLngBounds();
         pub.geocoder = new google.maps.Geocoder();
-        pub.infoWindow = new google.maps.InfoWindow({
-            content: '',
-            maxWidth: 250
-        });
+        pub.infoWindow = new google.maps.InfoWindow(pub.infoWindowOptions);
         pub.map = null;
         pub.nextAddress = 0;
         pub.zeroResult = 0;
