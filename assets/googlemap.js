@@ -41,8 +41,8 @@ yii.googleMapManager = (function ($) {
         /**
          * Get address and place it on map
          */
-        getAddress: function (search, htmlContent, loadMap) {
-            search = location.address;
+        getAddress: function (location, htmlContent, loadMap) {
+            var search = location.address;
             pub.geocoder.geocode({'address': search}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var place = results[0];
