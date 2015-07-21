@@ -1,6 +1,6 @@
 Google Maps Markers Widget for Yii2
 ==========
-- GoogleMaps Widget displays a set of user addresses as markers on the map.
+GoogleMaps Widget displays a set of user addresses as markers on the map.
 
 Installation   
 ------------
