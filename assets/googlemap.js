@@ -42,6 +42,7 @@ yii.googleMapManager = (function ($) {
          * Get address and place it on map
          */
         getAddress: function (search, htmlContent, loadMap) {
+            var search = location.address;
             pub.geocoder.geocode({'address': search}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var place = results[0];
@@ -59,7 +60,11 @@ yii.googleMapManager = (function ($) {
                     pub.delay++;
                 }
                 else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
-                    pub.zeroResult++;
+                    //If first query return zero results, then set address the value of the country
+                    if (location.address != location.country) {
+                        location.address = location.country;
+                        pub.getAddress(location, htmlContent, loadMap)
+                    }
                 }
                 loadMap();
             });
@@ -120,10 +125,13 @@ yii.googleMapManager = (function ($) {
      */
     function loadMap() {
         if (pub.nextAddress < pub.geocodeData.length) {
-            var address = pub.geocodeData[pub.nextAddress].address;
+            var location = {
+                country: pub.geocodeData[pub.nextAddress].country,
+                address: pub.geocodeData[pub.nextAddress].address
+            };
             var htmlContent = pub.geocodeData[pub.nextAddress].htmlContent;
             setTimeout(function () {
-                pub.getAddress(address, htmlContent, loadMap)
+                pub.getAddress(location, htmlContent, loadMap)
             }, pub.delay);
             pub.nextAddress++;
         }
