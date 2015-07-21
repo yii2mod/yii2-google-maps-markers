@@ -52,7 +52,7 @@ Configuration
 To configure the Google Maps key or other options like language, version, library, or map options:
 ```php
  echo GoogleMaps::widget([
-      'userLocations' => [......],
+      'userLocations' => [...],
       'googleMapsUrlOptions' => [
           'key' => 'this_is_my_key',
           'language' => 'id',
