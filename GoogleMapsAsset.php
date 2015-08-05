@@ -19,6 +19,7 @@ class GoogleMapsAsset extends AssetBundle
      * @var array
      */
     public $js = [
+        'markerclusterer_compiled.js',
         'googlemap.js',
     ];
 
