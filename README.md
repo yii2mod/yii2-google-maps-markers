@@ -85,3 +85,7 @@ To get key, please visit [options page](https://code.google.com/apis/console/)
 Google Maps Options 
 ----------------
 You can find them on the [options page](https://developers.google.com/maps/documentation/javascript/reference)
+
+#### Example
+-----
+![Alt text](http://res.cloudinary.com/zfort/image/upload/v1441115988/Map_preview_hcwb1x.png "Example")
