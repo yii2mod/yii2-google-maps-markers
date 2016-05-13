@@ -1,6 +1,8 @@
 Google Maps Markers Widget for Yii2
-==========
+==================================
 GoogleMaps Widget displays a set of user addresses as markers on the map.
+
+[![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-google-maps-markers/v/stable)](https://packagist.org/packages/yii2mod/yii2-google-maps-markers) [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-google-maps-markers/downloads)](https://packagist.org/packages/yii2mod/yii2-google-maps-markers) [![License](https://poser.pugx.org/yii2mod/yii2-google-maps-markers/license)](https://packagist.org/packages/yii2mod/yii2-google-maps-markers)
 
 Installation   
 ------------
