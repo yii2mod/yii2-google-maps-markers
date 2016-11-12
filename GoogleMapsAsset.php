@@ -23,4 +23,10 @@ class GoogleMapsAsset extends AssetBundle
         'googlemap.js',
     ];
 
+    /**
+     * @var array
+     */
+    public $depends = [
+        'yii\web\YiiAsset',
+    ];
 }
