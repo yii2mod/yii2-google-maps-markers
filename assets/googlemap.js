@@ -22,9 +22,7 @@ yii.googleMapManager = (function ($) {
         renderEmptyMap: true,
         map: null,
         init: function () {
-
         },
-        // Init function
         initModule: function (options) {
             initOptions(options).done(function () {
                 google.maps.event.addDomListener(window, 'load', initializeMap());
@@ -56,8 +54,7 @@ yii.googleMapManager = (function ($) {
                 }
                 loadMap();
             });
-        }
-        ,
+        },
         updatePosition: function (position) {
             var coordinates = [position];
             if (!pub.isPositionUnique(position)) {
@@ -88,7 +85,6 @@ yii.googleMapManager = (function ($) {
 
             return position;
         },
-
         isPositionUnique: function (position) {
             if (pub.markers.length != 0) {
                 for (var i = 0; i < pub.markers.length; i++) {
@@ -100,6 +96,7 @@ yii.googleMapManager = (function ($) {
                     }
                 }
             }
+
             return true;
         },
         drawMarker: function (place, htmlContent) {
@@ -119,9 +116,7 @@ yii.googleMapManager = (function ($) {
                 }
             }
         }
-        ,
     };
-
 
     /**
      * Setup googleMapManager properties
@@ -139,9 +134,9 @@ yii.googleMapManager = (function ($) {
         pub.markers = [];
         $.extend(true, pub, options);
         deferred.resolve();
+
         return deferred;
     }
-
 
     /**
      * Register listeners

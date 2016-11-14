@@ -139,7 +139,7 @@ class GoogleMaps extends Widget
 
     /**
      * Executes the widget.
-     * @return string the result of widget execution to be outputted.
+     * @return void
      */
     public function run()
     {
@@ -256,5 +256,4 @@ class GoogleMaps extends Widget
             'infoWindowOptions' => $this->infoWindowOptions,
         ]);
     }
-
 }
