@@ -104,15 +104,21 @@ yii.googleMapManager = (function ($) {
             pub.bounds.extend(position);
             var marker = new google.maps.Marker({
                 map: pub.map,
-                position: position,
+                position: position
             });
             bindInfoWindow(marker, pub.map, pub.infoWindow, htmlContent);
             pub.markerClusterer.addMarker(marker);
             pub.markers.push(marker);
             if (pub.nextAddress == pub.geocodeData.length) {
-                pub.map.fitBounds(pub.bounds);
-                if (pub.map.getZoom() > 17) {
-                    pub.map.setZoom(17);
+                if (pub.userOptions.mapOptions.center) {
+                    pub.map.setCenter(pub.mapOptions.center);
+                } else {
+                    google.maps.event.addListenerOnce(pub.map, 'bounds_changed', function () {
+                        if (pub.map.getZoom() > 17) {
+                            pub.map.setZoom(17);
+                        }
+                    });
+                    pub.map.fitBounds(pub.bounds);
                 }
             }
         }
@@ -132,6 +138,7 @@ yii.googleMapManager = (function ($) {
         pub.nextAddress = 0;
         pub.zeroResult = 0;
         pub.markers = [];
+        pub.userOptions = options;
         $.extend(true, pub, options);
         deferred.resolve();
 
@@ -196,5 +203,4 @@ yii.googleMapManager = (function ($) {
     }
 
     return pub;
-})
-(jQuery);
+})(jQuery);

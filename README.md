@@ -90,7 +90,7 @@ OR via yii params configuration. For example:
 ],
 ```
 
-To get key, please visit [options page](https://code.google.com/apis/console/)
+To get key, please visit [page](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 Google Maps Options
 -------------------

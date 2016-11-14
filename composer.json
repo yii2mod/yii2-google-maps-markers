@@ -12,6 +12,11 @@
         {
             "name": "Dmitry Semenov",
             "email": "disemx@gmail.com"
+        },
+        {
+            "name": "Alexander Harchenko",
+            "email": "morontt@gmail.com",
+            "homepage": "https://morontt.info"
         }
     ],
     "require": {
