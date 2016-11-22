@@ -6,6 +6,7 @@ use yii\web\AssetBundle;
 
 /**
  * Class GoogleMapsAsset
+ *
  * @package yii2mod\google\maps\markers
  */
 class GoogleMapsAsset extends AssetBundle

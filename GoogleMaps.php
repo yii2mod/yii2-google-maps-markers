@@ -55,6 +55,7 @@ class GoogleMaps extends Widget
     /**
      * libraries - Example: geometry, places. Default - empty string
      * version - 3.exp (Default)
+     *
      * @var array google maps url options(v, language, key, libraries)
      */
     public $googleMapsUrlOptions = [];
@@ -76,6 +77,7 @@ class GoogleMaps extends Widget
      * noClear (boolean) - If true, do not clear the contents of the Map div.
      * More Options:
      * https://developers.google.com/maps/documentation/javascript/reference
+     *
      * @var array
      */
     public $googleMapsOptions = [];
@@ -97,12 +99,14 @@ class GoogleMaps extends Widget
      *        }'))
      *    ]
      * ]
+     *
      * @var array google map listeners
      */
     public $googleMapsListeners = [];
 
     /**
      * https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
+     *
      * @var array
      */
     public $infoWindowOptions = [];
@@ -113,12 +117,13 @@ class GoogleMaps extends Widget
     public $containerId = 'map_canvas';
 
     /**
-     * @var bool render empty map, if userLocations is empty. Defaults to 'true'.
+     * @var bool render empty map, if userLocations is empty. Defaults to 'true'
      */
     public $renderEmptyMap = true;
 
     /**
      * Json array for yii.googleMapManager with users address and html contents
+     *
      * @var array
      */
     protected $geocodeData = [];
@@ -131,6 +136,7 @@ class GoogleMaps extends Widget
         if (is_array($this->userLocations) === false) {
             throw new InvalidConfigException('The "userLocations" property must be of the type array');
         }
+
         $this->googleMapsOptions = $this->getGoogleMapsOptions();
         $this->infoWindowOptions = $this->getInfoWindowOptions();
         $this->googleMapsUrlOptions = $this->getGoogleMapsUrlOptions();
@@ -138,19 +144,22 @@ class GoogleMaps extends Widget
 
     /**
      * Executes the widget.
-     * @return void
      */
     public function run()
     {
+        parent::run();
+
         if (empty($this->userLocations) && $this->renderEmptyMap === false) {
             return;
         }
+
         $this->geocodeData = $this->getGeoCodeData();
+
         echo Html::beginTag('div', ['id' => $this->getId(), 'style' => "height: {$this->wrapperHeight}"]);
         echo Html::tag('div', '', ['id' => $this->containerId]);
         echo Html::endTag('div');
+
         $this->registerAssets();
-        parent::run();
     }
 
     /**
@@ -167,6 +176,7 @@ class GoogleMaps extends Widget
 
     /**
      * Get place urls and htmlContent
+     *
      * @return string
      */
     protected function getGeoCodeData()
@@ -176,14 +186,16 @@ class GoogleMaps extends Widget
             $result[] = [
                 'country' => ArrayHelper::getValue($data['location'], 'country'),
                 'address' => implode(',', ArrayHelper::getValue($data, 'location')),
-                'htmlContent' => ArrayHelper::getValue($data, 'htmlContent')
+                'htmlContent' => ArrayHelper::getValue($data, 'htmlContent'),
             ];
         }
+
         return $result;
     }
 
     /**
      * Get google maps api url
+     *
      * @return string
      */
     protected function getGoogleMapsApiUrl()
@@ -193,6 +205,7 @@ class GoogleMaps extends Widget
 
     /**
      * Get google maps url options
+     *
      * @return array
      */
     protected function getGoogleMapsUrlOptions()
@@ -200,16 +213,18 @@ class GoogleMaps extends Widget
         if (isset(Yii::$app->params['googleMapsUrlOptions']) && empty($this->googleMapsUrlOptions)) {
             $this->googleMapsUrlOptions = Yii::$app->params['googleMapsUrlOptions'];
         }
+
         return ArrayHelper::merge($this->googleMapsUrlOptions, array_filter([
             'v' => '3.exp',
             'key' => null,
             'libraries' => null,
-            'language' => 'en'
+            'language' => 'en',
         ]));
     }
 
     /**
      * Get google maps options
+     *
      * @return array
      */
     protected function getGoogleMapsOptions()
@@ -217,15 +232,17 @@ class GoogleMaps extends Widget
         if (isset(Yii::$app->params['googleMapsOptions']) && empty($this->googleMapsOptions)) {
             $this->googleMapsOptions = Yii::$app->params['googleMapsOptions'];
         }
+
         return ArrayHelper::merge([
             'mapTypeId' => 'roadmap',
             'tilt' => 45,
-            'zoom' => 2
+            'zoom' => 2,
         ], $this->googleMapsOptions);
     }
 
     /**
      * Get info window options
+     *
      * @return array
      */
     protected function getInfoWindowOptions()
@@ -233,6 +250,7 @@ class GoogleMaps extends Widget
         if (isset(Yii::$app->params['infoWindowOptions']) && empty($this->infoWindowOptions)) {
             $this->infoWindowOptions = Yii::$app->params['infoWindowOptions'];
         }
+
         return ArrayHelper::merge([
             'content' => '',
             'maxWidth' => 350,
@@ -241,6 +259,7 @@ class GoogleMaps extends Widget
 
     /**
      * Get google map client options
+     *
      * @return string
      */
     protected function getClientOptions()
