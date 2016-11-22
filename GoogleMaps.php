@@ -133,6 +133,8 @@ class GoogleMaps extends Widget
      */
     public function init()
     {
+        parent::init();
+
         if (is_array($this->userLocations) === false) {
             throw new InvalidConfigException('The "userLocations" property must be of the type array');
         }
