@@ -147,8 +147,6 @@ class GoogleMaps extends Widget
      */
     public function run()
     {
-        parent::run();
-
         if (empty($this->userLocations) && $this->renderEmptyMap === false) {
             return;
         }
@@ -160,6 +158,8 @@ class GoogleMaps extends Widget
         echo Html::endTag('div');
 
         $this->registerAssets();
+
+        parent::run();
     }
 
     /**
