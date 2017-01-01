@@ -13,9 +13,10 @@ use yii\web\View;
 /**
  * GoogleMaps displays a set of user addresses as markers on the map.
  *
- * To use GoogleMaps, you need to configure its [[userLocations]] property. For example,
- * ~~~
- * echo \app\widgets\googlemaps\GoogleMaps::widget([
+ * To use GoogleMaps, you need to configure its [[userLocations]] property. For example:
+ *
+ * ```php
+ * echo yii2mod\google\maps\markers\GoogleMaps::widget([
  *     'userLocations' => [
  *           [
  *               'location' => [
@@ -33,7 +34,7 @@ use yii\web\View;
  *           ],
  *     ]
  * ]);
- * ~~~
+ * ```
  */
 class GoogleMaps extends Widget
 {
@@ -62,50 +63,34 @@ class GoogleMaps extends Widget
 
     /**
      * Google Maps options (mapTypeId, tilt, zoom, etc...)
-     * Short properties description:
-     * backgroundColor (string) - Color used for the background of the Map div
-     * center (LatLng object) - The initial Map center. Required.
-     * disableDefaultUI (boolean) - Enables/disables all default UI. May be overridden individually.
-     * disableDoubleClickZoom (boolean) - Enables/disables zoom and center on double click. Enabled by default..
-     * mapTypeId - The initial Map mapTypeId. Defaults to ROADMAP.
-     * tilt (number), Values(0, 45) - Controls the automatic switching behavior for the angle of incidence of the map.
-     * zoom (number) - The initial Map zoom level. Required.
-     * mapTypeControl (boolean) - The initial enabled/disabled state of the Map type control.
-     * mapTypeControlOptions (MapTypeControlOptions) - The initial display options for the Map type control.
-     * maxZoom (number) - The maximum zoom level which will be displayed on the map.
-     * minZoom (number) - The minimum zoom level which will be displayed on the map.
-     * noClear (boolean) - If true, do not clear the contents of the Map div.
-     * More Options:
-     * https://developers.google.com/maps/documentation/javascript/reference
+     *
+     * @see https://developers.google.com/maps/documentation/javascript/reference
      *
      * @var array
      */
     public $googleMapsOptions = [];
 
     /**
-     * Example listener for infowindow object, initialize js plugin(starrating):
+     * Example listener for infowindow object:
+     *
+     * ```php
      * [
      *    [
      *       'object' => 'infowindow',
      *       'event' => 'domready',
      *       'handler' => (new \yii\web\JsExpression('function() {
-     *              $("input[id*=company-star]").rating("create", {
-     *                  "step": 1,
-     *                  "symbol": "⍟",
-     *                  "showClear": false,
-     *                  "showCaption": false,
-     *                  "size": "sm"
-     *          });
+     *              // your custom js code
      *        }'))
      *    ]
      * ]
+     * ```
      *
      * @var array google map listeners
      */
     public $googleMapsListeners = [];
 
     /**
-     * https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
+     * @see https://developers.google.com/maps/documentation/javascript/reference#InfoWindowOptions
      *
      * @var array
      */

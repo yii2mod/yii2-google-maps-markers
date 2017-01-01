@@ -6,6 +6,7 @@ GoogleMaps Widget displays a set of user addresses as markers on the map.
 [![Latest Stable Version](https://poser.pugx.org/yii2mod/yii2-google-maps-markers/v/stable)](https://packagist.org/packages/yii2mod/yii2-google-maps-markers)
 [![Total Downloads](https://poser.pugx.org/yii2mod/yii2-google-maps-markers/downloads)](https://packagist.org/packages/yii2mod/yii2-google-maps-markers)
 [![License](https://poser.pugx.org/yii2mod/yii2-google-maps-markers/license)](https://packagist.org/packages/yii2mod/yii2-google-maps-markers)
+[![Build Status](https://travis-ci.org/yii2mod/yii2-google-maps-markers.svg?branch=master)](https://travis-ci.org/yii2mod/yii2-google-maps-markers)
 
 Installation
 ------------
@@ -20,7 +21,7 @@ php composer.phar require yii2mod/yii2-google-maps-markers "*"
 
 or add
 
-```json
+```
 "yii2mod/yii2-google-maps-markers": "*"
 ```
 
@@ -32,7 +33,7 @@ Usage
 To use GoogleMaps, you need to configure its [[userLocations]] property. For example:
 
 ```php
-echo GoogleMaps::widget([
+echo yii2mod\google\maps\markers\GoogleMaps::widget([
     'userLocations' => [
         [
             'location' => [
@@ -58,7 +59,7 @@ Configuration
 To configure the Google Maps key or other options like language, version, library, or map options:
 
 ```php
-echo GoogleMaps::widget([
+echo yii2mod\google\maps\markers\GoogleMaps::widget([
     'userLocations' => [...],
     'googleMapsUrlOptions' => [
         'key' => 'this_is_my_key',
