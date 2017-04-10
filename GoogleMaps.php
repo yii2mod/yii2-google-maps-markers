@@ -201,12 +201,12 @@ class GoogleMaps extends Widget
             $this->googleMapsUrlOptions = Yii::$app->params['googleMapsUrlOptions'];
         }
 
-        return ArrayHelper::merge($this->googleMapsUrlOptions, array_filter([
+        return ArrayHelper::merge([
             'v' => '3.exp',
             'key' => null,
             'libraries' => null,
             'language' => 'en',
-        ]));
+        ], $this->googleMapsUrlOptions);
     }
 
     /**
