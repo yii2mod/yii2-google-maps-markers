@@ -1,5 +1,10 @@
-Google Maps Markers Widget for Yii2
-===================================
+<p align="center">
+    <a href="https://github.com/yiisoft" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
+    </a>
+    <h1 align="center">Google Maps Markers Widget for Yii2</h1>
+    <br>
+</p>
 
 GoogleMaps Widget displays a set of user addresses as markers on the map.
 
@@ -37,15 +42,15 @@ echo yii2mod\google\maps\markers\GoogleMaps::widget([
     'userLocations' => [
         [
             'location' => [
-                'address' => 'Kharkov',
+                'address' => 'Kharkiv',
                 'country' => 'Ukraine',
             ],
-            'htmlContent' => '<h1>Kharkov</h1>',
+            'htmlContent' => '<h1>Kharkiv</h1>',
         ],
         [
             'location' => [
                 'city' => 'New York',
-                'country' => 'Usa',
+                'country' => 'United States',
             ],
             'htmlContent' => '<h1>New York</h1>',
         ],
